@@ -18,6 +18,7 @@
       <rosparam file="$(find uvdar_leader_follower)/config/leader.yaml" />
       <rosparam param="main/uav_name_list" subst_value="True">["$(arg uav_name)"]</rosparam>
       <rosparam param="$(arg uav_name)/filename" subst_value="True">"/trajectories/leader_1.0ms.txt"</rosparam>
+      <param name="trajectory/base_path" type="string" value="$(find uvdar_leader_follower)/trajectories" />
 
       <param name="current_working_directory" type="string" value="$(find uvdar_leader_follower)" />
       <param name="service_topic" type="string" value="control_manager/trajectory_reference" />

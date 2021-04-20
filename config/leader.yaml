@@ -14,7 +14,7 @@ trajectory:
   # the yaml and can be loaded eg. from an environment variable.
   dynamic_uav_name: false
   # Options specified here will override the common options above.
-  base_path: "/home/mrs/mrs_workspace/src/uvdar_leader_follower/trajectories"
+  # base_path: "trajectories"
   uavs:
     uav1:
       filename: "leader_1.0ms.txt"
