@@ -25,8 +25,7 @@ windows:
       layout: even-vertical
       panes:
         - export UAV_NAME=uav1; waitForOdometry; roslaunch uvdar_core led_manager.launch
-        - export UAV_NAME=uav1; waitForOdometry; sleep 5; rosservice call /uav1/uvdar_led_manager_node/quick_start 5
-        - export UAV_NAME=uav1; waitForOdometry; sleep 10; rosservice call /uav1/uvdar_led_manager_node/set_frequency 15
+        - export UAV_NAME=uav1; waitForOdometry; sleep 10; rosservice call /uav1/uvdar_led_manager_node/quick_start 15
   - control:
       layout: tiled
       panes:
