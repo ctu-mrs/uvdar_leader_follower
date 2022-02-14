@@ -19,8 +19,15 @@ windows:
   - spawn:
       layout: tiled
       panes:
-        - waitForSimulation; rosservice call /mrs_drone_spawner/spawn "1 $UAV_TYPE --enable-rangefinder --enable-ground-truth --pos_file `pwd`/pos1.yaml --enable-uv-leds --uvled-fr-r 15 --uvled-fr-l 15"
-        - waitForSimulation; sleep 10; rosservice call /mrs_drone_spawner/spawn "2 $UAV_TYPE --enable-rangefinder --enable-ground-truth --pos_file `pwd`/pos2.yaml --enable-uv-camera --uvcam-calib-file `rospack find uvdar_core`/include/OCamCalib/config/calib_results_bf_uv_fe.txt"
+        - waitForSimulation; rosservice call /mrs_drone_spawner/spawn "1 $UAV_TYPE --pos_file `pwd`/pos1.yaml --enable-rangefinder --enable-ground-truth --enable-uv-leds --uvled_s_l 0 --uvled_s_r 0"
+        - waitForSimulation; sleep 10; rosservice call /mrs_drone_spawner/spawn "2 $UAV_TYPE --pos_file `pwd`/pos2.yaml
+--enable-rangefinder --enable-ground-truth --enable-dual-uv-cameras --uvcam-calib-file `rospack find uvdar_core`/include/OCamCalib/config/calib_results_bf_uv_fe.txt"
+  - led_frequency:
+      layout: even-vertical
+      panes:
+        - export UAV_NAME=uav1; waitForOdometry; roslaunch uvdar_core led_manager.launch
+        - export UAV_NAME=uav1; waitForOdometry; sleep 5; rosservice call /uav1/uvdar_led_manager_node/quick_start 5
+        - export UAV_NAME=uav1; waitForOdometry; sleep 10; rosservice call /uav1/uvdar_led_manager_node/set_frequency 15
   - control:
       layout: tiled
       panes:
@@ -65,7 +72,7 @@ windows:
   - uv_observer:
       layout: even-vertical
       panes:
-        - export UAV_NAME=uav2; export TARGET_FREQUENCY_LEDS=15; waitForControl; roslaunch uvdar_leader_follower single_frequency_uvdar.launch
+        - export UAV_NAME=uav2; waitForControl; roslaunch uvdar_core sim_two_sided.launch
   - kalman_filter:
       layout: even-vertical
       panes:
