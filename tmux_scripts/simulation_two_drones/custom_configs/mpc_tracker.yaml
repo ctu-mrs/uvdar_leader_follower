@@ -1,0 +1,1 @@
+mpc_rate: 10.0 # rate of MPC calculation, >= 10 Hz
