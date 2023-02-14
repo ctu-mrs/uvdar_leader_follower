@@ -1,7 +1,7 @@
 name: simulation
 root: ./
 startup_window: goto_start
-pre_window: export UAV_NAME=uav1; export RUN_TYPE=simulation; export UAV_TYPE=f450; export WORLD_NAME=simulation; export SENSORS="garmin_down"; export SENSORS="garmin_down"
+pre_window: export UAV_NAME=uav1; export RUN_TYPE=simulation; export UAV_TYPE=x500; export WORLD_NAME=simulation; export SENSORS="garmin_down"; export SENSORS="garmin_down"
 windows:
   - roscore:
       layout: tiled
@@ -19,13 +19,12 @@ windows:
   - spawn:
       layout: tiled
       panes:
-        - waitForSimulation; rosservice call /mrs_drone_spawner/spawn "1 $UAV_TYPE --pos_file `pwd`/pos1.yaml --enable-rangefinder --enable-ground-truth --enable-uv-leds --uvled_s_l 0 --uvled_s_r 0"
+        - waitForSimulation; rosservice call /mrs_drone_spawner/spawn "1 $UAV_TYPE --pos_file `pwd`/pos1.yaml --enable-rangefinder --enable-ground-truth --enable-uv-leds --uvled_s 0 0 0 0"
         - waitForSimulation; sleep 10; rosservice call /mrs_drone_spawner/spawn "2 $UAV_TYPE --pos_file `pwd`/pos2.yaml --enable-rangefinder --enable-ground-truth --enable-dual-uv-cameras --uvcam-calib-file `rospack find uvdar_core`/include/OCamCalib/config/calib_results_bf_uv_fe.txt"
   - led_frequency:
       layout: even-vertical
       panes:
         - export UAV_NAME=uav1; waitForOdometry; roslaunch uvdar_core led_manager.launch
-        - export UAV_NAME=uav1; waitForOdometry; sleep 10; rosservice call /uav1/uvdar_led_manager_node/quick_start 5
   - control:
       layout: tiled
       panes:
@@ -74,7 +73,7 @@ windows:
   - kalman_filter:
       layout: even-vertical
       panes:
-        - export UAV_NAME=uav2; waitForControl; roslaunch uvdar_core uvdar_kalman_identified.launch output_frame:=$UAV_NAME/stable_origin
+        - export UAV_NAME=uav2; waitForControl; roslaunch uvdar_core uvdar_kalman.launch output_frame:=$UAV_NAME/stable_origin
   - goto_start:
       layout: even-vertical
       synchronize: after
