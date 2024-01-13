@@ -2,7 +2,7 @@
 #include <nav_msgs/Odometry.h>
 #include <geometry_msgs/PoseWithCovarianceStamped.h>
 #include <mrs_msgs/TrajectoryReference.h>
-#include <mrs_msgs/PositionCommand.h>
+#include <mrs_msgs/TrackerCommand.h>
 #include <mrs_msgs/SpeedTrackerCommand.h>
 #include <mrs_msgs/ReferenceStamped.h>
 #include <mrs_msgs/String.h>
@@ -56,7 +56,7 @@ public:
   uvdar_leader_follower::FollowerConfig initialize(mrs_lib::ParamLoader& param_loader);
 
   void receiveOdometry(const nav_msgs::Odometry& odometry_msg);
-  void receiveTrackerOutput(const mrs_msgs::PositionCommand& position_cmd);
+  void receiveTrackerOutput(const mrs_msgs::TrackerCommand& position_cmd);
   void receiveUvdar(const geometry_msgs::PoseWithCovarianceStamped& uvdar_msg);
   void dynamicReconfigureCallback(uvdar_leader_follower::FollowerConfig& config, uint32_t level);
 

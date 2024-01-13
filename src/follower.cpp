@@ -113,7 +113,7 @@ void FollowerController::receiveOdometry(const nav_msgs::Odometry& odometry_msg)
 //}
 
 /* receiveTrackerOutput //{ */
-void FollowerController::receiveTrackerOutput(const mrs_msgs::PositionCommand& position_cmd) {
+void FollowerController::receiveTrackerOutput(const mrs_msgs::TrackerCommand& position_cmd) {
 
   follower_position_tracker.x() = position_cmd.position.x;
   follower_position_tracker.y() = position_cmd.position.y;

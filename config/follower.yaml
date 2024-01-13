@@ -1,4 +1,4 @@
-reference_frame: "gps_origin"
+reference_frame: "world_origin"
 
 control_action_interval: 0.01 # [s]
 uvdar_msg_interval: 0.1 # [s]

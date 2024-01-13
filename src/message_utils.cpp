@@ -86,8 +86,8 @@ mrs_msgs::SpeedTrackerCommand buildSpeedTrackerCommand(Eigen::Vector3d velocity,
   cmd.velocity.y      = velocity.y();
   cmd.velocity.z      = 0.0;   // let the height controller maintain the vertical velocity
   cmd.use_velocity    = true;  // maintain the desired velocity
-  cmd.height          = height;
-  cmd.use_height      = true;  // maintain a constant height
+  cmd.z               = height;
+  cmd.use_z           = true;  // maintain a constant height
   cmd.heading         = heading;
   cmd.use_heading     = true;
   return cmd;
