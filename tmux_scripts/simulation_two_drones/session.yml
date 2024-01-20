@@ -16,9 +16,9 @@ windows:
       layout: tiled
       panes:
         - waitForGazebo; rosservice call /mrs_drone_spawner/spawn "1 --$UAV_TYPE --pos_file `pwd`/pos1.yaml --enable-rangefinder --enable-ground-truth --enable-uv-leds --uvled-s 0 1 2 3"
-        - waitForGazebo; sleep 3; rosservice call /mrs_drone_spawner/spawn "2 --$UAV_TYPE --pos_file `pwd`/pos2.yaml --enable-rangefinder --enable-ground-truth --enable-dual-uv-cameras --uvcam-calib-file `rospack find uvdar_core`/include/OCamCalib/config/calib_results_bf_uv_fe.txt"
+        - waitForGazebo; sleep 3; rosservice call /mrs_drone_spawner/spawn "2 --$UAV_TYPE --pos_file `pwd`/pos2.yaml --enable-rangefinder --enable-ground-truth --enable-dual-uv-cameras --uvcam-calib-file `rospack find uvdar_core`/config/ocamcalib/calib_results_bf_uv_fe.txt"
         # - waitForGazebo; rosservice call /mrs_drone_spawner/spawn "1 --$UAV_TYPE --pos_file `pwd`/pos1.yaml --enable-rangefinder --enable-ground-truth --enable-uv-leds signal_id:=[0,1,2,3]"
-        # - waitForGazebo; sleep 3; rosservice call /mrs_drone_spawner/spawn "2 --$UAV_TYPE --pos_file `pwd`/pos2.yaml --enable-rangefinder --enable-ground-truth --enable-dual-uv-cameras calib_file:=`rospack find uvdar_core`/include/OCamCalib/config/calib_results_bf_uv_fe.txt"
+        # - waitForGazebo; sleep 3; rosservice call /mrs_drone_spawner/spawn "2 --$UAV_TYPE --pos_file `pwd`/pos2.yaml --enable-rangefinder --enable-ground-truth --enable-dual-uv-cameras calib_file:=`rospack find uvdar_core`/config/ocamcalib/calib_results_bf_uv_fe.txt"
   - status:
       layout: tiled
       panes:
@@ -82,7 +82,7 @@ windows:
   - gazebo_camera_follow:
       layout: tiled
       panes:
-        - waitForControl; sleep 8; gz camera -c gzclient_camera -f uav2
+        - export UAV_NAME=uav2; waitForControl; sleep 8; gz camera -c gzclient_camera -f uav2
         # - waitForControl; sleep 5; ~/.i3/layout_manager.sh layout.json
   - rviz:
       layout: tiled

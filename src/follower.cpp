@@ -35,10 +35,15 @@ Eigen::Vector3d   leader_predicted_velocity;
 uvdar_leader_follower::FollowerConfig FollowerController::initialize(mrs_lib::ParamLoader& param_loader) {
 
   ROS_INFO("[Follower]: Waiting for odometry and uvdar");
+
   while (ros::ok()) {
+
     if (got_odometry && got_uvdar) {
       break;
+    } else {
+      ROS_INFO_THROTTLE(1.0, "[Follower]: waiting, got ODOMETRY=%s, UVDAR=%s", got_odometry ? "TRUE" : "FALSE", got_uvdar ? "TRUE" : "FALSE");
     }
+
     ros::Duration(0.01).sleep();
     ros::spinOnce();
   }

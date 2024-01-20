@@ -3,7 +3,7 @@
   <node name="follower" pkg="uvdar_leader_follower" type="follower" output="screen">
     <rosparam file="$(find uvdar_leader_follower)/config/follower.yaml" command="load" />
     <remap from="~uvdar_in" to="/$(arg follower_uav)/uvdar/filteredPoses" />
-    <remap from="~odometry_in" to="/$(arg follower_uav)/odometry/odom_main" />
+    <remap from="~odometry_in" to="/$(arg follower_uav)/estimation_manager/odom_main" />
     <remap from="~reference_point_out" to="/$(arg follower_uav)/control_manager/reference" />
     <remap from="~reference_trajectory_out" to="/$(arg follower_uav)/control_manager/trajectory_reference" />
     <remap from="~speed_tracker_command_out" to="/$(arg follower_uav)/control_manager/speed_tracker/command" />
