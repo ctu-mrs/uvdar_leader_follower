@@ -15,10 +15,10 @@ windows:
   - spawn:
       layout: tiled
       panes:
-        - waitForGazebo; rosservice call /mrs_drone_spawner/spawn "1 --$UAV_TYPE --pos_file `pwd`/pos1.yaml --enable-rangefinder --enable-ground-truth --enable-uv-leds --uvled-s 0 1 2 3"
-        - waitForGazebo; sleep 3; rosservice call /mrs_drone_spawner/spawn "2 --$UAV_TYPE --pos_file `pwd`/pos2.yaml --enable-rangefinder --enable-ground-truth --enable-dual-uv-cameras --uvcam-calib-file `rospack find uvdar_core`/config/ocamcalib/calib_results_bf_uv_fe.txt"
-        # - waitForGazebo; rosservice call /mrs_drone_spawner/spawn "1 --$UAV_TYPE --pos_file `pwd`/pos1.yaml --enable-rangefinder --enable-ground-truth --enable-uv-leds signal_id:=[0,1,2,3]"
-        # - waitForGazebo; sleep 3; rosservice call /mrs_drone_spawner/spawn "2 --$UAV_TYPE --pos_file `pwd`/pos2.yaml --enable-rangefinder --enable-ground-truth --enable-dual-uv-cameras calib_file:=`rospack find uvdar_core`/config/ocamcalib/calib_results_bf_uv_fe.txt"
+        # - waitForGazebo; rosservice call /mrs_drone_spawner/spawn "1 --$UAV_TYPE --pos_file `pwd`/pos1.yaml --enable-rangefinder --enable-ground-truth --enable-uv-leds --uvled-s 0 1 2 3"
+        # - waitForGazebo; sleep 3; rosservice call /mrs_drone_spawner/spawn "2 --$UAV_TYPE --pos_file `pwd`/pos2.yaml --enable-rangefinder --enable-ground-truth --enable-dual-uv-cameras --uvcam-calib-file `rospack find uvdar_core`/config/ocamcalib/calib_results_bf_uv_fe.txt"
+        - waitForGazebo; rosservice call /mrs_drone_spawner/spawn "1 --$UAV_TYPE --pos_file `pwd`/pos1.yaml --enable-rangefinder --enable-ground-truth --enable-uv-leds signal_id:=[0,1,2,3]"
+        - waitForGazebo; sleep 3; rosservice call /mrs_drone_spawner/spawn "2 --$UAV_TYPE --pos_file `pwd`/pos2.yaml --enable-rangefinder --enable-ground-truth --enable-dual-uv-cameras calib_file:=`rospack find uvdar_core`/config/ocamcalib/calib_results_bf_uv_fe.txt"
   - status:
       layout: tiled
       panes:
@@ -87,6 +87,6 @@ windows:
   - rviz:
       layout: tiled
       panes:
-        - waitForControl; roslaunch uvdar_leader_follower rviz.launch
+        - export UAV_NAME=uav1; waitForControl; roslaunch uvdar_leader_follower rviz.launch
         - export UAV_NAME=uav1; waitForControl; roslaunch mrs_rviz_plugins load_robot.launch
         - export UAV_NAME=uav2; waitForControl; roslaunch mrs_rviz_plugins load_robot.launch
